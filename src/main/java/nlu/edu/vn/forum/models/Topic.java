@@ -40,4 +40,8 @@ public class Topic extends Entry {
     public Message getNewMessage() {
         return messages.peek();
     }
+
+    public int getSizeMessage(){
+        return  messages.size();
+    }
 }

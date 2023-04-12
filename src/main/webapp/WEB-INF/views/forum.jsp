@@ -1,9 +1,9 @@
-<%@ page import="nlu.edu.vn.forum.models.User" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="user" scope="session" value="${sessionScope.user}" />
+<c:set var="user" scope="session" value="${sessionScope.user}"/>
 
 <!DOCTYPE html>
 <html>
@@ -23,7 +23,8 @@
         <div class="col-md-9 row justify-content-center">
             <div class="card mt-5">
                 <div class="card-header">
-                    <h4>Đăng nhập thành công chào mừng  <span style="color: red">${user.username}</span> đến Trang chủ diễn đàn</h4>
+                    <h4>Đăng nhập thành công chào mừng <span style="color: red">${user.username}</span> đến Trang chủ
+                        diễn đàn</h4>
                     <a href="/logout" class=" ">Đăng xuất</a>
                 </div>
 
@@ -32,19 +33,25 @@
         <div style="margin-top: 40px" class="col-md-10">
             <a href="/add-topic" type="button" class="mb-3 btn btn-success">Tạo bài mới</a>
 
-            <c:forEach items="${topics}" var="topics">
+            <c:forEach items="${topics}" var="topic">
                 <div class="card">
                     <div class="card-header">
-                        ${topics.title}
+                            ${topic.title}
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Bài mới nhất bởi  ${not empty topics.messages ? topics.getNewMessage().getCreator().getUsername() : 'không có'},<fmt:formatDate
-                                value="${topics.createdTime.getTime()}"
-                                pattern="HH:mm:ss dd-MM-yyyy"/></h5>
-                        <a href="/topic-detail?id=${topics.id}" class="btn btn-primary">Xem chi tiết</a>
+                        <h5 class="card-title">Bài mới nhất
+                            bởi ${not empty topic.messages ? topic.getNewMessage().getCreator().getUsername() : 'không có'},
+                            <fmt:formatDate value="${topic.createdTime.getTime()}" pattern="HH:mm:ss dd-MM-yyyy"/>
+                        </h5>
+
+                        <span style="display: flex;align-items: center;justify-content: flex-end">
+                           Hồi âm: <b style="font-size: 16px">${topic.sizeMessage}</b>
+                        </span>
+                        <a href="/topic-detail?id=${topic.id}" class="btn btn-primary">Xem chi tiết</a>
                     </div>
                 </div>
             </c:forEach>
+
 
         </div>
     </div>

@@ -31,7 +31,7 @@
                 <form id="post-message-form">
                     <div class="form-group">
                         <label for="title">Title</label>
-                        <input type="text" value="Re: ${topic.title}" class="form-control" id="title" name="title" required>
+                        <input disabled type="text" value="Re: ${topic.title}" class="form-control" id="title" name="title" required>
                     </div>
                     <div class="form-group">
                         <label for="content">Content</label>

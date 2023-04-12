@@ -21,22 +21,34 @@ import java.util.Map;
 public class ForumController {
     @Autowired
     private ForumService forumService;
+
     @GetMapping("/forum")
     public String index(HttpServletRequest request, HttpSession session) {
         User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/login";
+        }
         Collection<Topic> topics = forumService.getTopics();
         request.setAttribute("topics", topics);
         request.setAttribute("user", user);
         return "forum";
     }
+
     @GetMapping("/reply")
-    public String reply(@RequestParam("id") Integer id, Model model){
+    public String reply(@RequestParam("id") Integer id, Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/login";
+        }
         Topic topic = forumService.findTopic(id);
         model.addAttribute("topic", topic);
         return "reply";
     }
+
     @PostMapping("/topics/{id}/messages")
-    public ResponseEntity<String> postMessage(@PathVariable int id, @RequestBody Map<String, String> requestMap, HttpServletRequest request) {
+    public ResponseEntity<String> postMessage(@PathVariable int id,
+                                              @RequestBody Map<String, String> requestMap,
+                                              HttpServletRequest request) {
         String title = requestMap.get("title");
         String content = requestMap.get("content");
         HttpSession session = request.getSession();
@@ -45,7 +57,7 @@ public class ForumController {
         if (topic == null) {
             return ResponseEntity.notFound().build();
         }
-        topic.addMessage(new Message(title,content,creator));
+        topic.addMessage(new Message(title, content, creator));
         return ResponseEntity.ok("Message posted successfully");
     }
 

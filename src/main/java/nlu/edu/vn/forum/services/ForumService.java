@@ -1,5 +1,6 @@
 package nlu.edu.vn.forum.services;
 
+import lombok.extern.log4j.Log4j2;
 import nlu.edu.vn.forum.models.Category;
 import nlu.edu.vn.forum.models.Message;
 import nlu.edu.vn.forum.models.Topic;
@@ -10,6 +11,7 @@ import java.util.*;
 
 
 @Service
+@Log4j2
 public class ForumService {
     private static final ForumService instance = new ForumService();
     private Map<String, User> users;
@@ -110,10 +112,12 @@ public class ForumService {
         topics.put(id, topic);
         return topic;
     }
-    public void addMessage(int id, Message message)  {
-        Topic topic = topics.get(id);
-        topic.addMessage(message);
+    public int getMessageCountByTopic(int topicId) {
+        Topic topic = findTopic(topicId);
+
+        return topic.getMessages().size();
     }
+
     public List<Message> getAllMessagesByTopicId(int topicId) {
         Topic topic = topics.get(topicId);
         if (topic != null) {
@@ -136,6 +140,7 @@ public class ForumService {
     public Topic findTopic(Integer id) {
         return topics.get(id);
     }
+
 
     public static ForumService getInstance() {
         return instance;

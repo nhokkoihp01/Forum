@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -18,7 +19,11 @@ public class ShowTopicController {
     private ForumService forumService;
 
     @GetMapping("/topic-detail")
-    public String index(@RequestParam("id") Integer id, Model model) {
+    public String index(@RequestParam("id") Integer id, Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/login";
+        }
         Topic topic = forumService.findTopic(id);
         List<Message> messages = forumService.getAllMessagesByTopicId(id);
         model.addAttribute("messages", messages);
