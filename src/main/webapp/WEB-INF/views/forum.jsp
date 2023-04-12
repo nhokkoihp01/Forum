@@ -38,7 +38,7 @@
                         ${topics.title}
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Bài mới nhất bởi  ${topics.getCreator().getUsername()},<fmt:formatDate
+                        <h5 class="card-title">Bài mới nhất bởi  ${not empty topics.messages ? topics.getNewMessage().getCreator().getUsername() : 'không có'},<fmt:formatDate
                                 value="${topics.createdTime.getTime()}"
                                 pattern="HH:mm:ss dd-MM-yyyy"/></h5>
                         <a href="/topic-detail?id=${topics.id}" class="btn btn-primary">Xem chi tiết</a>
