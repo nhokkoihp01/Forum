@@ -54,7 +54,7 @@
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
-                alert("Tạo chủ đề mới thành công! Sau đó xin reload lai trang");
+                alert("Tạo chủ đề mới thành công! Sau đó xin reload lai trang chủ forum");
                 location.reload();
             } else if (xhr.readyState === 4) {
                 alert("Đã có lỗi xảy ra, vui lòng thử lại sau.");
