@@ -33,6 +33,7 @@
                     </div>
 
                     <button onclick="addTopic()" type="button" class="btn btn-primary">Tạo</button>
+                    <a style="color: #fff" href="/forum" type="button" class="btn btn-warning">Hủy</a>
                 </form>
             </div>
         </div>
