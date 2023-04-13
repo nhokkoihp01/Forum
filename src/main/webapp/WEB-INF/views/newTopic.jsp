@@ -48,28 +48,17 @@
             return;
         }
 
-        // Tạo đối tượng XMLHttpRequest
         const xhr = new XMLHttpRequest();
-
-        // Gửi request tới endpoint /topics
         xhr.open("POST", "/topics", true);
-
-        // Thiết lập header cho request
         xhr.setRequestHeader("Content-Type", "application/json");
-
-        // Xử lý kết quả trả về từ server
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
-                // Nếu request thành công, reload trang để hiển thị danh sách topic mới
                 alert("Tạo chủ đề mới thành công! Sau đó xin reload lai trang");
                 location.reload();
             } else if (xhr.readyState === 4) {
-                // Nếu request thất bại, hiển thị thông báo lỗi
                 alert("Đã có lỗi xảy ra, vui lòng thử lại sau.");
             }
         };
-
-        // Gửi data của topic tới server dưới dạng JSON
         const  data = JSON.stringify({ title: title, content: content });
         xhr.send(data);
     }
