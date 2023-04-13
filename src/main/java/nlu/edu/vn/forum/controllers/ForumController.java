@@ -31,7 +31,7 @@ public class ForumController {
         Collection<Topic> topics = forumService.getTopics();
         request.setAttribute("topics", topics);
         request.setAttribute("user", user);
-        return "forum";
+        return "listTopics";
     }
 
     @GetMapping("/reply")

@@ -44,8 +44,6 @@
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
                             <h5 class="card-title">${topic.creator.getUsername()}</h5>
-                            <footer class="blockquote-footer"><cite title="Source Title">Hồi âm</cite></footer>
-
                         </div>
                     </div>
                     <h5 class="card-title">${topic.title}</h5>
